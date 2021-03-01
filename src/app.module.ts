@@ -9,7 +9,7 @@ import { BookRepository } from './repositories/book.repository';
 
 @Module({
   imports: [TypeOrmModule.forRoot(), BooksModule],
-  controllers: [AppController, BookService],
+  controllers: [AppController],
   providers: [AppService,BookService, BookRepository],
 })
 export class AppModule {}
