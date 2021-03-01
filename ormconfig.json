@@ -1,0 +1,14 @@
+{
+  "type": "mysql",
+  "host": "localhost",
+  "port": 3306,
+  "username": "root",
+  "password": "root" ,
+  "database": "lib_db",
+  "entities": ["dist/models/author.entity.js",
+    "dist/models/book.entity.js",
+    "dist/models/library.entity.js",
+    "dist/models/magazine.entity.js",
+    "dist/models/novel.entity.js"],
+  "synchronize": true
+}
