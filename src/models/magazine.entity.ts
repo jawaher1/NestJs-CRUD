@@ -4,7 +4,7 @@ import { Book } from '../models/book.entity';
 @ChildEntity('magazine')
 export class Magazine extends Book{
     @Column()
-    next_release_date: string;
+    next_release_date: Date;
     keywords: string;
   
     constructor(next_release_date, keywords) {
