@@ -1,20 +1,31 @@
-export class LibrayController {}
-import {
-  Controller,
-  Post,
-  Body,
-  Get,
-  Put,
-  Delete,
-  Param,
-  Render 
-} from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Put, Delete} from '@nestjs/common';
+import { Library } from '../models/library.entity';
 import { LibraryService } from '../services/library.service';
-import { Library } from 'src/models/library.entity';
 
 @Controller('library')
 export class LibraryController {
-  constructor(private service: LibraryService) {}
+    constructor(public service: LibraryService) {}
 
+    @Get()
+    index(): Promise<Library[]> {
+      return this.service.findAll();
+    }    
+
+    @Post('create')
+    async create(@Body() library: Library): Promise<Library> {
+      return this.service.create(library);
+    } 
+    @Put('update/:id')
+    async update(@Param('id') id, @Body() library: Library): Promise<any> {
+      library.id = Number(id);
+        console.log('Update #' + library.id)
+        return this.service.update(library);
+    }  
+
+    @Delete('delete/:id')
+    async delete(@Param('id') id): Promise<any> {
+      return this.service.delete(id);
+    }  
+    
 
 }

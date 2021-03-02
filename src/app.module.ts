@@ -11,8 +11,10 @@ import { NovelModule } from './modules/novel.module';
 import { BookRepository } from './repositories/book.repository';
 import { MagazineRepository } from './repositories/magazine.repository';
 import { NovelRepository } from './repositories/novel.repository';
+import { AuthorModule } from './modules/author.module';
+import { LibraryModule } from './modules/library.module';
 @Module({
-  imports: [TypeOrmModule.forRoot(), BooksModule,MagazineModule, NovelModule],
+  imports: [TypeOrmModule.forRoot(), BooksModule,MagazineModule, NovelModule,AuthorModule,LibraryModule],
   controllers: [AppController],
   providers: [AppService,
   ],
