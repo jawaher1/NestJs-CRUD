@@ -2,8 +2,8 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, UpdateResult, DeleteResult } from 'typeorm';
 import { Author } from '../models/author.entity';
-
-
+import { Novel } from '../models/novel.entity';
+import { maxHeaderSize } from 'http';
 
 @Injectable()
 export class AuthorService {

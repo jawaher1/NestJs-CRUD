@@ -10,5 +10,6 @@ export class Novel extends Book {
     super()
     this.story_summary = story_summary;
   }
+  
 }
 

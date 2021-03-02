@@ -28,6 +28,5 @@ export class NovelController {
     async delete(@Param('id') id): Promise<any> {
       return this.service.delete(id);
     }  
-   
-
+  
 }

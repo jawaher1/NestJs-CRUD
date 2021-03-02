@@ -28,4 +28,8 @@ export abstract class Book {
   @ManyToOne(type => Author, author => author.books)
   @JoinTable()
   author: Author; 
+
+  getTotal_unist_sold(){
+    return this.total_units_sold;
+  }
 }
