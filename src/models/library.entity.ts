@@ -1,8 +1,8 @@
-import { Entity, Column, PrimaryGeneratedColumn,ManyToMany ,JoinTable  } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn,ManyToMany ,JoinTable , BaseEntity } from 'typeorm';
 import { Book } from './book.entity';
 
-@Entity()
-export class Library {
+@Entity('library')
+export class Library  {
   @PrimaryGeneratedColumn()
   id: number;
 

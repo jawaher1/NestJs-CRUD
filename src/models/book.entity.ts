@@ -1,15 +1,11 @@
-import { Entity, Column, PrimaryGeneratedColumn,ManyToMany ,JoinTable , ManyToOne } from 'typeorm';
-import { Author } from './author.entity';
-export enum ECategories {
-  Historical,
-  Crime,
-  Fashion,
-  Fiction,
-  Cooking,
-}
+import { Entity, Column, PrimaryGeneratedColumn , ManyToOne, TableInheritance,BaseEntity , JoinTable} from 'typeorm';
+import { Author } from '../models/author.entity';
+import  { ECategories} from 'src/models/ECategories'
 
-@Entity()
-export class Book {
+@Entity('book')
+@TableInheritance({column: {type: 'varchar', name: 'type'}})
+
+export abstract class Book {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -25,21 +21,11 @@ export class Book {
   @Column()
   publication_date: Date;
 
-  @Column()
+  @Column('text')
   categories: ECategories;
 
-  
-/*
-  constructor(id, title, price, total_units_sold, publication_date, categories) {
-    this.id = id;
-    this.title = title;
-    this.price = price;
-    this.total_units_sold = total_units_sold;
-    this.publication_date = publication_date;
-    this.categories = categories;
-  }
-*/
+
   @ManyToOne(type => Author, author => author.books)
-  author: Author;
-  
+  @JoinTable()
+  author: Author; 
 }

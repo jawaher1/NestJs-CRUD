@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, UpdateResult, DeleteResult } from 'typeorm';
 import { Book } from '../models/book.entity';
-import { Magazine } from '../models/magazine.entity';
+
 
 
 @Injectable()
@@ -29,9 +29,7 @@ export class BookService {
   async delete(id): Promise<DeleteResult> {
     return await this.booksRepository.delete(id);
   }
-  async  create_mag(mag: Magazine): Promise<Magazine> {
-    return await this.booksRepository.save(mag);
-  }
+ 
   
   
   

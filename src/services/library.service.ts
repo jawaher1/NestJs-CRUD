@@ -3,11 +3,33 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Book } from '../models/book.entity';
 import { Library } from 'src/models/library.entity';
 import { LibraryRepository } from '../repositories/library.repository';
+import { Repository, UpdateResult, DeleteResult } from 'typeorm';
 @Injectable()
 export class LibraryService {
   constructor(
     @InjectRepository(Library) private libraryRepository: LibraryRepository,
   ) {}
 
+  
+    async  findAll(): Promise<Library[]> {
+      return await this.libraryRepository.find();
+  }
+  
+  async  create(library: Library): Promise<Library> {
+      return await this.libraryRepository.save(library);
+  }
+  
+  async update(library: Library): Promise<UpdateResult> {
+    return await this.libraryRepository.update(library.id, library);
+  }
+  
+  
+  async delete(id): Promise<DeleteResult> {
+    return await this.libraryRepository.delete(id);
+  }
 
-}
+  
+  
+  }
+  
+

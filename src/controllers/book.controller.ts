@@ -17,19 +17,17 @@ export class BookController {
     async create(@Body() book: Book): Promise<Book> {
       return this.service.create(book);
     } 
-    @Put(':id/update')
+    @Put('update/:id')
     async update(@Param('id') id, @Body() book: Book): Promise<any> {
       book.id = Number(id);
         console.log('Update #' + book.id)
         return this.service.update(book);
     }  
 
-    @Delete(':id/delete')
+    @Delete('delete/:id')
     async delete(@Param('id') id): Promise<any> {
       return this.service.delete(id);
     }  
-    @Post('create_mag')
-    async create_mag(@Body() mag: Magazine): Promise<Magazine> {
-      return this.service.create_mag(mag);
-    } 
+    
+
 }

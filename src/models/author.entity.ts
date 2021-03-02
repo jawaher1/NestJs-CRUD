@@ -1,8 +1,8 @@
-import { Entity, Column, PrimaryGeneratedColumn , OneToMany, JoinTable } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn , OneToMany, JoinTable ,BaseEntity,} from 'typeorm';
 import { Book } from './book.entity';
 
-@Entity()
-export class Author {
+@Entity('author')
+export class Author  {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -13,6 +13,7 @@ export class Author {
   age: number;
 
   @OneToMany( type => Book , book => book.author)
+  @JoinTable()
   books: Book[];
 
 }
