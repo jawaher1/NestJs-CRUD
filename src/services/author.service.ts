@@ -31,9 +31,10 @@ export class AuthorService {
     return await this.authorRepository.delete(id);
   }
  
-  async getAllBooksByAuthorId(id) :  Promise<Book[]>  {
-    return (await this.authorRepository.findOne({ where: { id: id }})).books ;
-  }
+  async getMostSoldNovel(id) : Promise<Book>  {
+    var books = (await this.authorRepository.findOne({ where: { id: id }})).books ;
+   return books.sort((a,b )=> b.total_units_sold - a.total_units_sold)[0]
+    } 
   
   }
   

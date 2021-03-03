@@ -5,6 +5,7 @@ import { Book } from '../models/book.entity';
 export class Magazine extends Book{
     @Column()
     next_release_date: Date;
+    @Column()
     keywords: string;
   
     constructor(next_release_date, keywords) {

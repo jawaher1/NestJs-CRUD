@@ -30,14 +30,9 @@ export class AuthorController {
       return this.service.delete(id);
     }  
    
-  @Get(':id')
-  async getBooks(@Param() params: any): Promise<Book[]> {
-    return await this.service.getAllBooksByAuthorId(params.id)
-  } 
+
   @Get('most-sold-novel/:id')
-   async  getMostSoldNovel(@Param('id') id): Promise<Book[]>{
-      let l = await this.service.getAllBooksByAuthorId(id)
-     let nb =  await  l.reduce((acc, Book) => acc = acc > Book.total_units_sold ? id : Book.total_units_sold, 0);
-      return await this.novelservice.getNovelBySoldUnits(nb)
+   async  getMostSoldNovel(@Param('id') id): Promise<Book>{
+    return this.service.getMostSoldNovel(id)
     }  
 }

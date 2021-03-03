@@ -27,6 +27,10 @@ export class MagazineController {
     async delete(@Param('id') id): Promise<any> {
       return this.service.delete(id);
     }  
-   
+    @Get('magazine-closest-release-date')
+    async  getCookingMagazine(): Promise<Magazine>{
+      return this.service.getCookingMagazine() ; 
+      
+     } 
 
 }

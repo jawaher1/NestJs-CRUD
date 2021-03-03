@@ -46,9 +46,5 @@ export class NovelService {
         return await this.novelRepository.delete(id);
     }
 
-    async getNovelBySoldUnits(units : any)   :Promise<Novel[]>{
-        return await this.novelRepository.find({ where:{ total_units_sold : units}});
-     
-    }
  
 }
