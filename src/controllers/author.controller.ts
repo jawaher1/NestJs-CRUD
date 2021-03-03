@@ -1,10 +1,13 @@
 import { Controller, Get, Post, Body, Param, Put, Delete} from '@nestjs/common';
 import { Author } from '../models/author.entity';
 import { AuthorService } from '../services/author.service';
+import { Book } from '../models/book.entity';
+import { NovelService } from '../services/novel.service';
 
 @Controller('author')
 export class AuthorController {
-    constructor(public service: AuthorService) {}
+    constructor(public service: AuthorService,
+      public novelservice: NovelService) {}
 
     @Get()
     index(): Promise<Author[]> {
@@ -26,6 +29,15 @@ export class AuthorController {
     async delete(@Param('id') id): Promise<any> {
       return this.service.delete(id);
     }  
-    
-
+   
+  @Get(':id')
+  async getBooks(@Param() params: any): Promise<Book[]> {
+    return await this.service.getAllBooksByAuthorId(params.id)
+  } 
+  @Get('most-sold-novel/:id')
+   async  getMostSoldNovel(@Param('id') id): Promise<Book[]>{
+      let l = await this.service.getAllBooksByAuthorId(id)
+     let nb =  await  l.reduce((acc, Book) => acc = acc > Book.total_units_sold ? id : Book.total_units_sold, 0);
+      return await this.novelservice.getNovelBySoldUnits(nb)
+    }  
 }

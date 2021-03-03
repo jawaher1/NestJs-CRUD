@@ -2,8 +2,9 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, UpdateResult, DeleteResult } from 'typeorm';
 import { Author } from '../models/author.entity';
-import { Novel } from '../models/novel.entity';
+import { Book } from '../models/book.entity';
 import { maxHeaderSize } from 'http';
+import { Novel } from 'src/models/novel.entity';
 
 @Injectable()
 export class AuthorService {
@@ -30,8 +31,9 @@ export class AuthorService {
     return await this.authorRepository.delete(id);
   }
  
-  
-  
+  async getAllBooksByAuthorId(id) :  Promise<Book[]>  {
+    return (await this.authorRepository.findOne({ where: { id: id }})).books ;
+  }
   
   }
   

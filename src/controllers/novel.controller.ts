@@ -1,12 +1,16 @@
 
 import { Controller, Get, Post, Body, Param, Put, Delete} from '@nestjs/common';
 import { NovelService } from '../services/novel.service';
+import { AuthorService } from '../services/author.service';
+
 import { Novel } from '../models/novel.entity';
+import { Book } from 'src/models/book.entity';
 
 
 @Controller('novel')
 export class NovelController {
-    constructor(public service: NovelService) {}
+    constructor(public service: NovelService,
+    ){}
 
     @Get()
     index(): Promise<Novel[]> {
@@ -28,5 +32,5 @@ export class NovelController {
     async delete(@Param('id') id): Promise<any> {
       return this.service.delete(id);
     }  
-  
+    
 }

@@ -1,4 +1,4 @@
-import { Entity, Column, PrimaryGeneratedColumn , ManyToOne, TableInheritance,BaseEntity , JoinTable} from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn , ManyToOne, TableInheritance,BaseEntity , JoinTable, JoinColumn} from 'typeorm';
 import { Author } from '../models/author.entity';
 import  { ECategories} from 'src/models/ECategories'
 
@@ -25,8 +25,9 @@ export abstract class Book {
   categories: ECategories;
 
 
-  @ManyToOne(type => Author, author => author.books)
-  @JoinTable()
+  @ManyToOne(type => Author, author => author.books,{
+  onDelete: 'CASCADE',})
+  @JoinColumn()
   author: Author; 
 
   getTotal_unist_sold(){

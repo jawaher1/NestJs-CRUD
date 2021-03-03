@@ -2,7 +2,23 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, UpdateResult, DeleteResult } from 'typeorm';
 import { Novel } from '../models/novel.entity';
+import { Author } from '../models/author.entity';
 
+import {
+    Sequelize,
+    Model,
+    ModelDefined,
+    DataTypes,
+    HasManyGetAssociationsMixin,
+    HasManyAddAssociationMixin,
+    HasManyHasAssociationMixin,
+    Association,
+    HasManyCountAssociationsMixin,
+    HasManyCreateAssociationMixin,
+    Optional,
+  } from "sequelize";
+import { Stream } from 'stream';
+import { Book } from 'src/models/book.entity';
 
 @Injectable()
 export class NovelService {
@@ -10,6 +26,7 @@ export class NovelService {
 
     constructor(
         @InjectRepository(Novel) private novelRepository: Repository<Novel>,
+     
     ) { }
 
     async  findAll(): Promise<Novel[]> {
@@ -29,15 +46,9 @@ export class NovelService {
         return await this.novelRepository.delete(id);
     }
 
-    async get_All_units_sold(collection: any) {
-        var values = [];
-        collection.forEach(function (item) {
-        values.push(item.total_units_sold);
-        });
-        return values;
+    async getNovelBySoldUnits(units : any)   :Promise<Novel[]>{
+        return await this.novelRepository.find({ where:{ total_units_sold : units}});
+     
     }
-    async most_sold_novel_by_author(id) : Promise<Novel>{
-
-        return (await this.novelRepository.find({ where: { authorId: id}})).sort())}
-
+ 
 }
