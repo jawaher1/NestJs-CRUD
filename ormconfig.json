@@ -1,6 +1,7 @@
 {
   "type": "mysql",
-  "host": "localhost",
+  "host": "mysql-standalone",
+  "url" : " jdbc:mysql://mysql-standalone:3306/lib_db?createDatabaseIfNotExist=true&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC",
   "port": 3306,
   "username": "root",
   "password": "root" ,
