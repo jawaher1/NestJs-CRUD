@@ -1,11 +1,12 @@
 import { Controller, Get, Post, Body, Param, Put, Delete} from '@nestjs/common';
 import { Content } from '../models/content.entity';
 import { ContentService } from '../services/content.service';
+import { ChartsService } from 'src/services/chart.service';
 
 
 @Controller('content')
 export class ContentController {
-    constructor(public service: ContentService) {}
+    constructor(public service: ContentService, public chartservice : ChartsService) {}
 
     @Get()
     index(): Promise<Content[]> {
@@ -32,6 +33,9 @@ export class ContentController {
     async delete(@Param('id') id): Promise<any> {
       return this.service.delete(id);
     }  
-    
+    @Get('/html')
+    async getHtmlCode(): Promise<string> {
+      return this.chartservice.screenshot()
 
+}
 }
