@@ -8,13 +8,14 @@ import { MagazineService } from './services/magazine.service';
 import { BooksModule } from './modules/book.module';
 import { MagazineModule } from './modules/magazine.module';
 import { NovelModule } from './modules/novel.module';
+import { ContentModule } from './modules/content.module';
 import { BookRepository } from './repositories/book.repository';
 import { MagazineRepository } from './repositories/magazine.repository';
 import { NovelRepository } from './repositories/novel.repository';
 import { AuthorModule } from './modules/author.module';
 import { LibraryModule } from './modules/library.module';
 @Module({
-  imports: [TypeOrmModule.forRoot(), BooksModule,MagazineModule, NovelModule,AuthorModule,LibraryModule],
+  imports: [TypeOrmModule.forRoot(), BooksModule,MagazineModule, NovelModule,AuthorModule,LibraryModule,ContentModule],
   controllers: [AppController],
   providers: [AppService,
   ],

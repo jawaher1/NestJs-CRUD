@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Book } from '../models/book.entity';
+import { Novel } from '../models/novel.entity';
 import { Library } from 'src/models/library.entity';
 import { LibraryRepository } from '../repositories/library.repository';
 import { Repository, UpdateResult, DeleteResult } from 'typeorm';
@@ -36,7 +37,6 @@ export class LibraryService {
   async getAllBooksByLibraryId(name: string): Promise<Book[]> {
     return (await this.libraryRepository.findOne({ where: { name: name }, relations: ['books'] })).books;
   }
-
 }
 
 

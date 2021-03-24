@@ -1,8 +1,7 @@
 {
   "type": "mysql",
-  "host": "mysql-standalone",
-  "url" : " jdbc:mysql://mysql-standalone:3306/lib_db?createDatabaseIfNotExist=true&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC",
-  "port": 3306,
+  "host": "localhost",
+  "port": 3309,
   "username": "root",
   "password": "root" ,
   "database": "lib_db",
@@ -10,6 +9,7 @@
     "dist/models/book.entity.js",
     "dist/models/library.entity.js",
     "dist/models/magazine.entity.js",
-    "dist/models/novel.entity.js"],
+    "dist/models/novel.entity.js",
+    "dist/models/content.entity.js"],
   "synchronize": true
 }
