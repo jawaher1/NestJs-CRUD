@@ -2,7 +2,8 @@ import { Controller, Get, Post, Body, Param, Put, Delete} from '@nestjs/common';
 import { Content } from '../models/content.entity';
 import { ContentService } from '../services/content.service';
 import { ChartsService } from 'src/services/chart.service';
-
+import {  UseInterceptors, UploadedFile, UploadedFiles } from "@nestjs/common";
+import { FileInterceptor, FilesInterceptor } from "@nestjs/platform-express";
 
 @Controller('content')
 export class ContentController {
@@ -36,6 +37,14 @@ export class ContentController {
     @Get('/html')
     async getHtmlCode(): Promise<string> {
       return this.chartservice.screenshot()
+    }
+      @Post("upload")
+      @UseInterceptors(FileInterceptor("photo", { dest: "./uploads" }))
+      uploadSingle(@UploadedFile() file) {
+        console.log(file);
+      } 
+      
+    
 
-}
+
 }
